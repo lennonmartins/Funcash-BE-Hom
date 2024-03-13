@@ -6,9 +6,15 @@ import com.example.demo.utils.EntidadeBase;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@Entity
 public class Desejo extends EntidadeBase {
     @Column(nullable = false, length = 200)
     private String titulo;
