@@ -7,7 +7,6 @@ import com.example.demo.modelos.usuario.UserRole;
 import com.example.demo.modelos.usuario.Usuario;
 import com.microsoft.applicationinsights.core.dependencies.javaxannotation.Nullable;
 
-import groovy.transform.builder.Builder;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,6 +17,7 @@ import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 @Data
 @Entity
