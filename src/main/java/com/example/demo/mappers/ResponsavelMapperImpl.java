@@ -1,6 +1,7 @@
 package com.example.demo.mappers;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import com.example.demo.dto.ResponsavelRequestDTO;
 import com.example.demo.dto.ResponsavelResponseDTO;
@@ -8,6 +9,7 @@ import com.example.demo.modelos.Responsavel;
 import com.example.demo.modelos.usuario.Usuario;
 import com.example.demo.utils.DataConvert;
 
+@Component
 public class ResponsavelMapperImpl implements ResponsavelMapper{
 
     @Override
