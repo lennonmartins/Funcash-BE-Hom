@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.CriancaRequestDTO;
+import com.example.demo.dto.CriancaResponseDTO;
 import com.example.demo.repositorios.CriancaRepository;
 import com.example.demo.servicos.CriancaService;
 
@@ -27,7 +29,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173/", maxAge = 3600, allowCredentials = "true")
-@RequestMapping(path = { "/api/v1/responsavel" }, produces = { "application/json" })
+@RequestMapping(path = { "/api/v1/criancas" }, produces = { "application/json" })
 public class CriancaController {
     private final CriancaService criancaService;
 

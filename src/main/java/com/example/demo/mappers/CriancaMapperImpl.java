@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.controladores.CriancaRequestDTO;
-import com.example.demo.controladores.CriancaResponseDTO;
+import com.example.demo.dto.CriancaRequestDTO;
+import com.example.demo.dto.CriancaResponseDTO;
 import com.example.demo.modelos.Crianca;
 import com.example.demo.modelos.Responsavel;
 import com.example.demo.modelos.usuario.Usuario;

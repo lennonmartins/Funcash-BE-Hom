@@ -2,8 +2,8 @@ package com.example.demo.mappers;
 
 import java.util.Collection;
 
-import com.example.demo.controladores.CriancaRequestDTO;
-import com.example.demo.controladores.CriancaResponseDTO;
+import com.example.demo.dto.CriancaRequestDTO;
+import com.example.demo.dto.CriancaResponseDTO;
 import com.example.demo.modelos.Crianca;
 
 public interface CriancaMapper {
