@@ -38,6 +38,7 @@ public class ConfiguracaoDeSegurancaWeb {
                     authorize.requestMatchers("/swagger-ui/swagger-initializer.js").permitAll();
                     authorize.requestMatchers("/swagger-ui/favicon-32x32.png").permitAll();
                     authorize.requestMatchers("/swagger-ui/favicon-16x16.png").permitAll();
+                    authorize.requestMatchers("/v3/api-docs/swagger-config").permitAll();
                     authorize.requestMatchers("/api/v1/autenticacao/entrar").permitAll();
                     authorize.requestMatchers("/api/v1/responsavel").permitAll();
                     authorize.anyRequest().authenticated();
