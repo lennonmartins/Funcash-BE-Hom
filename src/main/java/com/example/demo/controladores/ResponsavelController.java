@@ -63,6 +63,8 @@ public class ResponsavelController {
         return ResponseEntity.ok(responsavelService.alterarReponsavel(responsavelRequestDTO, id));
     }
 
+    @Operation(summary = "Apaga os dados de um responsavel cadastrado")
+    @ApiResponse(responseCode = "200")
     @PreAuthorize("hasRole('RESPONSAVEL')")
     @DeleteMapping(path = "/{id}")
     public void remover(@PathVariable Long id) {
