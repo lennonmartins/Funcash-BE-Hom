@@ -30,7 +30,7 @@ public class ConfiguracaoDeSegurancaWeb {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/").permitAll();
-                    authorize.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll();
+                    authorize.requestMatchers("/swagger-ui/index.html").permitAll();
                     authorize.requestMatchers("/api/v1/autenticacao/entrar").permitAll();
                     authorize.requestMatchers("/api/v1/responsavel").permitAll();
                     authorize.anyRequest().authenticated();
