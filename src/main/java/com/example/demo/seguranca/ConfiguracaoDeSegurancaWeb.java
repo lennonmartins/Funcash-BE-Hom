@@ -31,6 +31,11 @@ public class ConfiguracaoDeSegurancaWeb {
                 .authorizeHttpRequests(authorize -> {
                     authorize.requestMatchers("/").permitAll();
                     authorize.requestMatchers("/swagger-ui/index.html").permitAll();
+                    authorize.requestMatchers("/swagger-ui/swagger-ui.css").permitAll();
+                    authorize.requestMatchers("/swagger-ui/index.css").permitAll();
+                    authorize.requestMatchers("/swagger-ui-bundle.js").permitAll();
+                    authorize.requestMatchers("/swagger-ui/swagger-ui-standalone-preset.js").permitAll();
+                    authorize.requestMatchers("/swagger-ui/swagger-initializer.js").permitAll();
                     authorize.requestMatchers("/api/v1/autenticacao/entrar").permitAll();
                     authorize.requestMatchers("/api/v1/responsavel").permitAll();
                     authorize.anyRequest().authenticated();
