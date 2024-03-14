@@ -29,10 +29,9 @@ public class ConfiguracaoDeSegurancaWeb {
         return httpSecurity
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests(authorize -> {
-                    authorize.requestMatchers( "/swagger-ui/**", "/v3/api-docs/**").permitAll();
+                    authorize.requestMatchers("/").permitAll();
                     authorize.requestMatchers("/api/v1/autenticacao/entrar").permitAll();
                     authorize.requestMatchers("/api/v1/responsavel").permitAll();
-                    authorize.requestMatchers( "/api/**/responsavel**").permitAll();
                     authorize.anyRequest().authenticated();
                     })
                 .cors().and()
