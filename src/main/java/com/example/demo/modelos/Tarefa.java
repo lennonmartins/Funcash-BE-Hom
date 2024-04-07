@@ -16,6 +16,8 @@ import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.validation.constraints.Size;
+
 
 @Data
 @NoArgsConstructor
@@ -35,6 +37,7 @@ public class Tarefa extends EntidadeBase {
     private double valor;
 
     @Column(nullable = false, length = 50)
+    @Size(max = 50) 
     private String titulo;
 
     @Column(nullable = true, length = 250)
