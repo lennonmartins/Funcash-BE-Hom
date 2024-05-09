@@ -34,7 +34,7 @@ public class Tarefa extends EntidadeBase {
     @Column(nullable = false)
     private double valor;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 20)
     private String titulo;
 
     @Column(nullable = true, length = 250)
