@@ -12,6 +12,8 @@ import com.example.demo.dto.LoginDTO;
 import com.example.demo.dto.UsuarioResponseDto;
 import com.example.demo.servicos.AuthService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 
 @RestController
@@ -22,6 +24,8 @@ public class AuthController {
     @Autowired
     AuthService authService;
 
+    @Operation(summary = "Acessar o sistema")
+    @ApiResponse(responseCode = "200")
     @PostMapping(path = { "/entrar" })
     public ResponseEntity<UsuarioResponseDto> autenticar(@Valid @RequestBody LoginDTO loginRequest) {
         UsuarioResponseDto responseDTO = authService.login(loginRequest.getEmail(), loginRequest.getSenha());
