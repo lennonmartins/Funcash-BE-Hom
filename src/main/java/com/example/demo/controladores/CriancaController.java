@@ -43,7 +43,7 @@ public class CriancaController {
     @Operation(summary = "Cadastra uma nova crianca")
     @ApiResponse(responseCode = "201")
     @PostMapping(consumes = {"application/json"})
-    @PreAuthorize("hasRole('RESPONSAVEL')")
+    @PreAuthorize("hasAuthority('RESPONSAVEL')")
     public ResponseEntity<CriancaResponseDTO> cadastrarCrianca(@RequestBody @Valid CriancaRequestDTO criancaRequestDTO) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(criancaService.cadastrar(criancaRequestDTO));
     }
@@ -56,13 +56,13 @@ public class CriancaController {
     }
 
     @Operation(summary ="Deleta uma criança pelo seu id")
-    @PreAuthorize("hasRole('RESPONSAVEL')")
+    @PreAuthorize("hasAuthority('RESPONSAVEL')")
     @DeleteMapping(path = "/{id}")
     public void remover(@PathVariable Long id) {
         criancaRepository.deleteById(id);
     }
     
-    @PreAuthorize("hasRole('RESPONSAVEL')")
+    @PreAuthorize("hasAuthority('RESPONSAVEL')")
     @Operation(summary = "Busca lista de todas as crianças")
     @ApiResponse(responseCode = "200", description = "Retorna uma lista de criancas cadastradas")
     @GetMapping
