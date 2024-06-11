@@ -44,7 +44,6 @@ public class ConfiguracaoDeSegurancaWeb {
                     authorize.requestMatchers("/api/v1/responsavel").permitAll();
                     authorize.anyRequest().authenticated();
                     })
-                .cors().and()
                 .csrf().disable()
                 .addFilterBefore(filtroDeSeguranca, UsernamePasswordAuthenticationFilter.class)
                 .build();

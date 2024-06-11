@@ -29,7 +29,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173/", maxAge = 3600, allowCredentials = "true")
-@RequestMapping(path = { "/api/v1/criancas" }, produces = { "application/json" })
+//@RequestMapping(path = { "/api/v1/criancas" }, produces = { "application/json" })
 public class CriancaController {
     private final CriancaService criancaService;
 
@@ -43,7 +43,7 @@ public class CriancaController {
     @Operation(summary = "Cadastra uma nova crianca")
     @ApiResponse(responseCode = "201")
     @PostMapping(consumes = {"application/json"})
-    @PreAuthorize("hasAuthority('RESPONSAVEL')")
+    //@PreAuthorize("hasAuthority('RESPONSAVEL')")
     public ResponseEntity<CriancaResponseDTO> cadastrarCrianca(@RequestBody @Valid CriancaRequestDTO criancaRequestDTO) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(criancaService.cadastrar(criancaRequestDTO));
     }

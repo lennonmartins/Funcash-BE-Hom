@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
 
 @RestController
 // @CrossOrigin(origins = "http://localhost:5173/", maxAge = 3600, allowCredentials = "true")
-@CrossOrigin(origins = "*", maxAge = 3600, allowCredentials = "true")
+//@CrossOrigin(origins = "*", maxAge = 3600, allowCredentials = "true")
 @RequestMapping(path = { "/api/v1/responsavel" }, produces = { "application/json" })
 public class ResponsavelController {
     private final ResponsavelService responsavelService;
