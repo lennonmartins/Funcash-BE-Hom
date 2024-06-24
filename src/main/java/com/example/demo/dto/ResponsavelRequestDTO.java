@@ -4,12 +4,12 @@ import com.example.demo.modelos.Genero;
 import com.example.demo.modelos.usuario.UserRole;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class ResponsavelRequestDTO {
     private String nome;
     private String email;

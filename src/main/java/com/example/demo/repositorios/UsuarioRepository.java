@@ -16,5 +16,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query("SELECT u FROM Usuario u JOIN u.responsavel r WHERE r.id = :idDoResponsavel")
     Usuario findByIdResponsavel(Long idDoResponsavel);
 
-    UserDetails findByEmail(String email);
+    Optional<Usuario> findByEmail(String email);
+
+    //UserDetails findByEmail(String email);
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controladores;
 
+import org.apache.commons.codec.EncoderException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,14 +21,20 @@ import jakarta.validation.Valid;
 // @CrossOrigin(origins = "*")
 @RequestMapping(path = { "/api/v1/autenticacao" }, produces = { "application/json" })
 public class AuthController {
+    private final AuthService authService;
 
-    @Autowired
-    AuthService authService;
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
+    // @Autowired
+    // AuthService authService;
 
     @Operation(summary = "Acessar o sistema")
     @ApiResponse(responseCode = "200")
-    @PostMapping(path = { "/entrar" })
-    public ResponseEntity<UsuarioResponseDto> autenticar(@Valid @RequestBody LoginDTO loginRequest) {
+    @PostMapping(consumes = { "application/json" })
+    // @PostMapping(path = { "/entrar" })
+    public ResponseEntity<UsuarioResponseDto> autenticar(@Valid @RequestBody LoginDTO loginRequest) throws EncoderException {
         UsuarioResponseDto responseDTO = authService.login(loginRequest.getEmail(), loginRequest.getSenha());
         return ResponseEntity.ok(responseDTO);
     }
