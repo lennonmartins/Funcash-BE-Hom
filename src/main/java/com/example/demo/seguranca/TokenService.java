@@ -1,54 +1,55 @@
 package com.example.demo.seguranca;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import org.springframework.stereotype.Service;
+
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTCreationException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.example.demo.modelos.usuario.Usuario;
+import java.util.Date;
 
 @Service
 public class TokenService {
+    private static final String SECRET_KEY = "your_secret_key";
+    private static final long VALIDITY_DURATION_MS = 3600000; // 1 hour
 
-    @Value("${funcash.security.token.secret}")
-    private String segredo;
+    private final String issuer = "funcash-api";
 
-    private final String issuer = "funscash-api";
+    public String generateToken(String username) {
+        Date now = new Date();
 
-    public String gerarToken(Usuario usuario) {
-        try {
-            Algorithm algoritmo = Algorithm.HMAC256(segredo);
-            String token = JWT.create()
-                    .withIssuer(issuer)
-                    .withSubject(usuario.getEmail())
-                    .withExpiresAt(getExpiracao())
-                    .sign(algoritmo);
-            return token;
-        } catch (JWTCreationException exception) {
-            throw new RuntimeException("Erro ao gerar token.", exception);
-        }
+        Algorithm algoritmo = Algorithm.HMAC256(SECRET_KEY);
+        String token = JWT.create()
+                .withIssuer(issuer)
+                .withSubject(username)
+                .withExpiresAt(getExpiracao())
+                .sign(algoritmo);
+        return token;
     }
 
-    public String validarToken(String token) {
+    public String isValidToken(String token) {
         try {
-            Algorithm algoritmo = Algorithm.HMAC256(segredo);
+            Algorithm algoritmo = Algorithm.HMAC256(SECRET_KEY);
             return JWT.require(algoritmo)
-                    .withIssuer(issuer)
-                    .build()
-                    .verify(token)
-                    .getSubject();
-        } catch (JWTVerificationException exception) {
-            return "";
-        }
+                     .withIssuer(issuer)
+                     .build()
+                     .verify(token)
+                     .getSubject();
+         } catch (JWTVerificationException exception) {
+             return "";
+         }
     }
 
     public Instant getExpiracao() {
         return LocalDateTime.now().plusMonths(6).toInstant(ZoneOffset.of("-03:00"));
+    }
+
+    public String getUsernameFromToken(String token) {
+        Claims claims = Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        return claims.getSubject();
     }
 }

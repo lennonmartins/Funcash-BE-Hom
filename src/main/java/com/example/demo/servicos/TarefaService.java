@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.controladores.AlterarStatusTarefaDTO;
 import com.example.demo.dto.TarefaRequestDTO;
@@ -58,6 +59,7 @@ public class TarefaService {
         return tarefaMapper.tarefaParaTarefaResponseDTO(tarefaParaAlterar);
     }
 
+    @Transactional
     public Collection<TarefaResponseDTO> buscarTarefasPelaCrianca(long id) {
         return tarefaMapper.tarefasParaTarefasResponsesDtos((Collection<Tarefa>) tarefaRepository.findAllByCrianca(id));
     }

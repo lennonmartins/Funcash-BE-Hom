@@ -7,7 +7,6 @@ import javax.naming.NameNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +27,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/", maxAge = 3600, allowCredentials = "true")
-//@RequestMapping(path = { "/api/v1/criancas" }, produces = { "application/json" })
+//@CrossOrigin(origins = "http://localhost:5173/", maxAge = 3600, allowCredentials = "true")
+@RequestMapping(path = { "/api/v1/criancas" }, produces = { "application/json" })
 public class CriancaController {
     private final CriancaService criancaService;
 
@@ -43,7 +42,6 @@ public class CriancaController {
     @Operation(summary = "Cadastra uma nova crianca")
     @ApiResponse(responseCode = "201")
     @PostMapping(consumes = {"application/json"})
-    //@PreAuthorize("hasAuthority('RESPONSAVEL')")
     public ResponseEntity<CriancaResponseDTO> cadastrarCrianca(@RequestBody @Valid CriancaRequestDTO criancaRequestDTO) throws Exception {
         return ResponseEntity.status(HttpStatus.CREATED).body(criancaService.cadastrar(criancaRequestDTO));
     }
@@ -56,13 +54,11 @@ public class CriancaController {
     }
 
     @Operation(summary ="Deleta uma criança pelo seu id")
-    @PreAuthorize("hasAuthority('RESPONSAVEL')")
     @DeleteMapping(path = "/{id}")
     public void remover(@PathVariable Long id) {
         criancaRepository.deleteById(id);
     }
     
-    @PreAuthorize("hasAuthority('RESPONSAVEL')")
     @Operation(summary = "Busca lista de todas as crianças")
     @ApiResponse(responseCode = "200", description = "Retorna uma lista de criancas cadastradas")
     @GetMapping

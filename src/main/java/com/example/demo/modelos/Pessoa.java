@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter @Getter
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Pessoa extends EntidadeBase {
-        @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 100)
     private String nome;
 
     @Column(nullable = false)

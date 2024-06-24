@@ -5,13 +5,11 @@ import java.time.LocalDate;
 import com.example.demo.modelos.Crianca;
 import com.example.demo.modelos.Genero;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Builder @Getter @Setter
 public class CriancaResponseDTO {
     private Long id;
 

@@ -1,9 +1,7 @@
 package com.example.demo.controladores;
 
 import org.apache.commons.codec.EncoderException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +31,7 @@ public class AuthController {
     @Operation(summary = "Acessar o sistema")
     @ApiResponse(responseCode = "200")
     //@PostMapping(consumes = { "application/json" })
-    @PostMapping(path = { "/entrar" })
+    @PostMapping(path = { "/autenticacao/entrar" })
     public ResponseEntity<UsuarioResponseDto> autenticar(@Valid @RequestBody LoginDTO loginRequest) throws EncoderException {
         UsuarioResponseDto responseDTO = authService.login(loginRequest.getEmail(), loginRequest.getSenha());
         return ResponseEntity.ok(responseDTO);

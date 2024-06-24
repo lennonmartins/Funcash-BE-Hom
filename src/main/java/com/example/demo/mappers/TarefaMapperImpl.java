@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.dto.TarefaRequestDTO;
 import com.example.demo.dto.TarefaResponseDTO;
@@ -22,6 +23,7 @@ public class TarefaMapperImpl implements TarefaMapper{
     private CriancaRepository criancaRepository;
 
     @Override
+    @Transactional
     public TarefaResponseDTO tarefaParaTarefaResponseDTO(Tarefa tarefa) {
         return new TarefaResponseDTO(tarefa.getId(),
                 tarefa.getHoraLimite(),
@@ -50,6 +52,7 @@ public class TarefaMapperImpl implements TarefaMapper{
     }
 
     @Override
+    @Transactional
     public Collection<TarefaResponseDTO> tarefasParaTarefasResponsesDtos(Collection<Tarefa> tarefas) {
         Collection<TarefaResponseDTO> tarefasResponsesDtos = new ArrayList<>();
 

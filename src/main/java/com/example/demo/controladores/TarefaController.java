@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,13 +35,11 @@ public class TarefaController {
     @Operation(summary = "Cadastrar uma nova tarefa")
     @ApiResponse(responseCode = "201")
     @PostMapping(consumes = { "application/json" })
-    @PreAuthorize("hasRole('RESPONSAVEL')")
     public ResponseEntity<TarefaResponseDTO> cadastrarTarefa(@RequestBody @Valid TarefaRequestDTO tarefaRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(tarefaService.cadastrar(tarefaRequestDTO));
     }
 
     @DeleteMapping(path = "/{id}")
-    @PreAuthorize("hasRole('RESPONSAVEL')")
     public void remover(@PathVariable Long id) {
         tarefaService.deletar(id);
     }
@@ -63,15 +60,14 @@ public class TarefaController {
 
     @Operation(summary = "Atualizar uma tarefa")
     @ApiResponse(responseCode = "200")
-    @PreAuthorize("hasRole('RESPONSAVEL')")
-    @PutMapping(path = "/{id}", consumes = { "application/json" })
+    @PutMapping(path = "/{idTarefa}", consumes = { "application/json" })
     public ResponseEntity<TarefaResponseDTO> alteraTarefa(@RequestBody @Valid TarefaRequestDTO tarefaRequestDTO,
             @PathVariable Long id) {
         return ResponseEntity.ok(tarefaService.alterar(tarefaRequestDTO, id));
     }
 
     @Operation(summary = "Buscar tarefas pelo id da criança")
-    @GetMapping(path = "/crianca/{id}/tarefas")
+    @GetMapping(path = "/crianca/{idDaCrianca}/tarefas")
     public ResponseEntity<Collection<TarefaResponseDTO>> buscarPeloIdCrianca(@PathVariable long id) {
         return ResponseEntity.ok(tarefaService.buscarTarefasPelaCrianca(id));
     }

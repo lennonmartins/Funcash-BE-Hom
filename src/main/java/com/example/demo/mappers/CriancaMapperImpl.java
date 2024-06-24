@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.dto.CriancaRequestDTO;
@@ -15,12 +14,19 @@ import com.example.demo.modelos.Crianca;
 import com.example.demo.modelos.Responsavel;
 import com.example.demo.modelos.usuario.Usuario;
 import com.example.demo.repositorios.ResponsavelRepository;
+import com.example.demo.seguranca.SecurityConfig;
 import com.example.demo.utils.DataConvert;
 
 @Component
 public class CriancaMapperImpl implements CriancaMapper {
     @Autowired
     private ResponsavelRepository responsavelRepository;
+
+    private final SecurityConfig passwordEncoder;
+
+    private CriancaMapperImpl() {
+        this.passwordEncoder = new SecurityConfig();
+    }
 
     @Override
     public CriancaResponseDTO criancaParaCriancaResponseDTO(Crianca crianca) {
@@ -39,7 +45,7 @@ public class CriancaMapperImpl implements CriancaMapper {
     @Override
     public Crianca criancaRequestparaCrianca(CriancaRequestDTO criancaRequestDTO) throws Exception {
         Responsavel responsavel = verificaSeObjetoEhNulo(criancaRequestDTO);
-        String senhaCriptografada = new BCryptPasswordEncoder().encode(criancaRequestDTO.getSenha());
+        String senhaCriptografada = passwordEncoder.encode(criancaRequestDTO.getSenha());
         return new Crianca(
                 (DataConvert.obterData(criancaRequestDTO.getDataDeNascimento())),
                 new Usuario(criancaRequestDTO.getEmail(), senhaCriptografada, criancaRequestDTO.getRole()),
