@@ -28,7 +28,7 @@ public class AuthService {
         this.passwordEncoder = new SecurityConfig();
     }
 
-    @Transactional
+    //@Transactional
     public UsuarioResponseDto login(String email, String senha) throws EncoderException {
         var usuario = usuarioRepository.findByEmail(email).orElseThrow(() -> new EncoderException("Usuário não encontrado"));
 

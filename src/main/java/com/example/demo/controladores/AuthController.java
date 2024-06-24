@@ -25,9 +25,6 @@ public class AuthController {
         this.authService = authService;
     }
 
-    // @Autowired
-    // AuthService authService;
-
     @Operation(summary = "Acessar o sistema")
     @ApiResponse(responseCode = "200")
     //@PostMapping(consumes = { "application/json" })

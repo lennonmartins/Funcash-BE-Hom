@@ -18,7 +18,7 @@ public class FilterConfig {
     @Bean
     public FilterRegistrationBean<AuthFilter> authFilter() {
         List<String> excludedUrls = Arrays.asList(
-                "/api/v1/login",
+                "/api/v1/autenticacao/entrar",
                 "/api/v1/responsavel"
         );
 

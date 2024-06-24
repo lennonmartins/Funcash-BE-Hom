@@ -24,8 +24,8 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Lob
-    @Column(nullable = true, length = 16777215)
+    
+    @Column(nullable = false)
     private String senha;
 
     @OneToOne

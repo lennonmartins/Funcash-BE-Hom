@@ -62,14 +62,14 @@ public class TarefaController {
     @ApiResponse(responseCode = "200")
     @PutMapping(path = "/{idTarefa}", consumes = { "application/json" })
     public ResponseEntity<TarefaResponseDTO> alteraTarefa(@RequestBody @Valid TarefaRequestDTO tarefaRequestDTO,
-            @PathVariable Long id) {
-        return ResponseEntity.ok(tarefaService.alterar(tarefaRequestDTO, id));
+            @PathVariable Long idTarefa) {
+        return ResponseEntity.ok(tarefaService.alterar(tarefaRequestDTO, idTarefa));
     }
 
     @Operation(summary = "Buscar tarefas pelo id da criança")
     @GetMapping(path = "/crianca/{idDaCrianca}/tarefas")
-    public ResponseEntity<Collection<TarefaResponseDTO>> buscarPeloIdCrianca(@PathVariable long id) {
-        return ResponseEntity.ok(tarefaService.buscarTarefasPelaCrianca(id));
+    public ResponseEntity<Collection<TarefaResponseDTO>> buscarPeloIdCrianca(@PathVariable long idDaCrianca) {
+        return ResponseEntity.ok(tarefaService.buscarTarefasPelaCrianca(idDaCrianca));
     }
 
     @Operation(summary = "Altera o status da tarefa para realizada")
