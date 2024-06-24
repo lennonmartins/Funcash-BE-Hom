@@ -19,7 +19,7 @@ import jakarta.validation.Valid;
 
 @RestController
 // @CrossOrigin(origins = "*")
-@RequestMapping(path = { "/api/v1/autenticacao" }, produces = { "application/json" })
+@RequestMapping(path = { "/api/v1" }, produces = { "application/json" })
 public class AuthController {
     private final AuthService authService;
 
@@ -32,8 +32,8 @@ public class AuthController {
 
     @Operation(summary = "Acessar o sistema")
     @ApiResponse(responseCode = "200")
-    @PostMapping(consumes = { "application/json" })
-    // @PostMapping(path = { "/entrar" })
+    //@PostMapping(consumes = { "application/json" })
+    @PostMapping(path = { "/entrar" })
     public ResponseEntity<UsuarioResponseDto> autenticar(@Valid @RequestBody LoginDTO loginRequest) throws EncoderException {
         UsuarioResponseDto responseDTO = authService.login(loginRequest.getEmail(), loginRequest.getSenha());
         return ResponseEntity.ok(responseDTO);
