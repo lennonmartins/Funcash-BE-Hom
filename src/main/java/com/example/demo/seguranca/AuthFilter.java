@@ -30,6 +30,26 @@ public class AuthFilter implements Filter {
         String requestURI = httpRequest.getRequestURI();
         String method = httpRequest.getMethod();
 
+        List<String> allowedOrigins = List.of(
+            "http://127.0.0.1:5173",
+            "http://localhost:5173",
+            "https://funcash.vercel.app"
+        );
+        String origin = httpRequest.getHeader("Origin");
+        if (allowedOrigins.contains(origin)) {
+            httpResponse.setHeader("Access-Control-Allow-Origin", origin);
+        }
+        httpResponse.setHeader("Access-Control-Allow-Origin", origin);
+        httpResponse.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        httpResponse.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+        httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
+        httpResponse.setHeader("Access-Control-Max-Age", "3600");
+
+        if ("OPTIONS".equalsIgnoreCase(method)) {
+            httpResponse.setStatus(HttpServletResponse.SC_OK);
+            return;
+        }
+
         if ("POST".equals(method) && excludedUrls.stream().anyMatch(requestURI::startsWith)) {
             chain.doFilter(request, response);
             return;
