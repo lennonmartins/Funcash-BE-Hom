@@ -28,6 +28,7 @@ import jakarta.validation.Valid;
 
 @RestController
 //@CrossOrigin(origins = "http://localhost:5173/", maxAge = 3600, allowCredentials = "true")
+@CrossOrigin(origins = "https://funcash.vercel.app")
 @RequestMapping(path = { "/api/v1/criancas" }, produces = { "application/json" })
 public class CriancaController {
     private final CriancaService criancaService;

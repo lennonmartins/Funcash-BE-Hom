@@ -27,7 +27,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://funcash.vercel.app")
 @RequestMapping(path = { "/api/v1/desejos" }, produces = { "application/json" })
 public class DesejoController {
     private final DesejoService desejoService;

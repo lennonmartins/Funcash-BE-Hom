@@ -2,6 +2,7 @@ package com.example.demo.controladores;
 
 import org.apache.commons.codec.EncoderException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import jakarta.validation.Valid;
 
 @RestController
 // @CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://funcash.vercel.app")
 @RequestMapping(path = { "/api/v1" }, produces = { "application/json" })
 public class AuthController {
     private final AuthService authService;
